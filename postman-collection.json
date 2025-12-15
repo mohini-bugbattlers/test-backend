@@ -1,0 +1,257 @@
+{
+  "info": {
+    "name": "Prathmesh Blog API",
+    "description": "Complete collection for testing Blog API with file uploads",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login (Get Token)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"admin@example.com\",\n    \"password\": \"yourpassword\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Get JWT token for authentication"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Blogs",
+      "item": [
+        {
+          "name": "Get All Blogs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/blogs",
+              "host": ["{{base_url}}"],
+              "path": ["api", "blogs"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1",
+                  "description": "Page number"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Items per page"
+                },
+                {
+                  "key": "category",
+                  "value": "technology",
+                  "description": "Filter by category slug (optional)"
+                },
+                {
+                  "key": "search",
+                  "value": "search term",
+                  "description": "Search term (optional)"
+                }
+              ]
+            },
+            "description": "Get paginated list of published blogs"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Blog by Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/blogs/test-blog-post",
+              "host": ["{{base_url}}"],
+              "path": ["api", "blogs", "test-blog-post"]
+            },
+            "description": "Get a single blog post by its slug"
+          },
+          "response": []
+        },
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/blogs/categories/all",
+              "host": ["{{base_url}}"],
+              "path": ["api", "blogs", "categories", "all"]
+            },
+            "description": "Get all blog categories"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Blog (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "My New Blog Post",
+                  "type": "text"
+                },
+                {
+                  "key": "slug",
+                  "value": "my-new-blog-post",
+                  "type": "text"
+                },
+                {
+                  "key": "excerpt",
+                  "value": "A brief excerpt of the blog post",
+                  "type": "text"
+                },
+                {
+                  "key": "content",
+                  "value": "This is the full content of the blog post...",
+                  "type": "text"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/path/to/image.jpg"
+                },
+                {
+                  "key": "author",
+                  "value": "Admin User",
+                  "type": "text"
+                },
+                {
+                  "key": "readTime",
+                  "value": "5 min read",
+                  "type": "text"
+                },
+                {
+                  "key": "categories",
+                  "value": "[1, 2]",
+                  "type": "text",
+                  "description": "Array of category IDs as JSON string"
+                },
+                {
+                  "key": "tags",
+                  "value": "[1, 3, 5]",
+                  "type": "text",
+                  "description": "Array of tag IDs as JSON string"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/blogs",
+              "host": ["{{base_url}}"],
+              "path": ["api", "blogs"]
+            },
+            "description": "Create a new blog post (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Blog (Admin)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Updated Blog Title",
+                  "type": "text",
+                  "description": "Optional"
+                },
+                {
+                  "key": "content",
+                  "value": "Updated content...",
+                  "type": "text",
+                  "description": "Optional"
+                },
+                {
+                  "key": "image",
+                  "type": "file",
+                  "src": "/path/to/updated-image.jpg",
+                  "description": "Optional - Upload new image"
+                },
+                {
+                  "key": "status",
+                  "value": "published",
+                  "type": "text",
+                  "description": "Optional: 'draft' or 'published'"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/blogs/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "blogs", "1"]
+            },
+            "description": "Update an existing blog post (Admin only)"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Blog (Admin)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{jwt_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/blogs/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "blogs", "1"]
+            },
+            "description": "Delete a blog post (Admin only)"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "your_jwt_token_here",
+      "type": "string",
+      "description": "Get this from the login response"
+    }
+  ]
+}

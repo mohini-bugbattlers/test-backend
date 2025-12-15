@@ -1,0 +1,64 @@
+{
+  "name": "prathmesh-roadlines-backend",
+  "version": "1.0.0",
+  "description": "Common backend server for all Prathmesh Roadlines panels with MySQL",
+  "main": "server.ts",
+  "scripts": {
+    "dev": "nodemon --config nodemon.json",
+    "build": "tsc",
+    "start": "ts-node --project tsconfig.json server.ts",
+    "lint": "eslint . --ext .ts,.tsx",
+    "db:migrate": "ts-node --project tsconfig.json src/scripts/migrate.ts",
+    "db:seed": "ts-node --project tsconfig.json src/scripts/seed.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.946.0",
+    "@aws-sdk/s3-request-presigner": "^3.946.0",
+    "@types/backblaze-b2": "^1.5.6",
+    "@types/bcrypt": "^6.0.0",
+    "axios": "^1.13.2",
+    "backblaze-b2": "^1.7.1",
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "firebase": "^12.6.0",
+    "firebase-admin": "^13.6.0",
+    "jsonwebtoken": "^9.0.1",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.6.0",
+    "nodemailer": "^6.9.3",
+    "reflect-metadata": "^0.1.13",
+    "socket.io": "^4.7.4",
+    "ts-node": "^10.9.2",
+    "typeorm": "^0.3.17"
+  },
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/multer": "^1.4.7",
+    "@types/node": "^20.0.0",
+    "@types/nodemailer": "^6.4.8",
+    "@types/socket.io": "^3.0.2",
+    "eslint": "^8.0.0",
+    "tsx": "^3.12.7",
+    "typescript": "^5.0.0"
+  },
+  "keywords": [
+    "transport",
+    "logistics",
+    "backend",
+    "api",
+    "mysql"
+  ],
+  "author": "Prathmesh Roadlines",
+  "license": "MIT"
+}
