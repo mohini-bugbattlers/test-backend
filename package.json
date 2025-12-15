@@ -4,9 +4,11 @@
   "description": "Common backend server for all Prathmesh Roadlines panels with MySQL",
   "main": "server.ts",
   "scripts": {
-    "dev": "nodemon --config nodemon.json",
-    "build": "tsc",
-    "start": "ts-node --project tsconfig.json server.ts",
+      "build": "tsc",
+  "start": "node -r tsconfig-paths/register dist/server.js",
+  "dev": "nodemon server.ts",
+  
+   
     "lint": "eslint . --ext .ts,.tsx",
     "db:migrate": "ts-node --project tsconfig.json src/scripts/migrate.ts",
     "db:seed": "ts-node --project tsconfig.json src/scripts/seed.ts"
@@ -33,6 +35,7 @@
     "reflect-metadata": "^0.1.13",
     "socket.io": "^4.7.4",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typeorm": "^0.3.17"
   },
   "ts-node": {
