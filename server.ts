@@ -4,7 +4,11 @@ import dotenv from 'dotenv';
 import { createServer } from 'http';
 import { Server, Socket } from 'socket.io';
 import path from 'path';
-import { initializeDatabase } from './src/config/mysql';
+
+// Config
+import db, { initializeDatabase } from './src/config/mysql';
+
+// Routes
 import authRoutes from './src/routes/auth';
 import companyRoutes from './src/routes/companies';
 import vehicleOwnerRoutes from './src/routes/vehicleOwners';
@@ -18,11 +22,13 @@ import documentRoutes from './src/routes/documents';
 import paymentRoutes from './src/routes/payments';
 import reportRoutes from './src/routes/reports';
 import profileRoutes from './src/routes/profile';
-import settingsRoutes from  './src/routes/settings'
+import settingsRoutes from './src/routes/settings';
 import companyDashboardRoutes from './src/routes/company';
 import blogRoutes from './src/routes/blogRoutes';
 import quoteRoutes from './src/routes/quoteRoutes';
 import fileUploadRoutes from './src/routes/fileUpload';
+
+// Middleware & Controllers
 import { authenticateToken, requireRole } from './src/middleware/auth';
 import { BlogController } from './src/controllers/BlogController';
 

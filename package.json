@@ -4,14 +4,15 @@
   "description": "Common backend server for all Prathmesh Roadlines panels with MySQL",
   "main": "server.ts",
   "scripts": {
-      "build": "tsc",
-  "start": "node -r tsconfig-paths/register dist/server.js",
-  "dev": "nodemon server.ts",
-  
-   
+    "build": "tsc",
+    "start": "node dist/server.js",
+    "dev": "nodemon server.ts",
     "lint": "eslint . --ext .ts,.tsx",
-    "db:migrate": "ts-node --project tsconfig.json src/scripts/migrate.ts",
-    "db:seed": "ts-node --project tsconfig.json src/scripts/seed.ts"
+    "db:migrate": "ts-node src/scripts/migrate.ts",
+    "db:seed": "ts-node src/scripts/seed.ts"
+  },
+  "_moduleAliases": {
+    "@": "dist"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.946.0",
@@ -29,13 +30,13 @@
     "firebase": "^12.6.0",
     "firebase-admin": "^13.6.0",
     "jsonwebtoken": "^9.0.1",
+    "module-alias": "^2.2.3",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.6.0",
     "nodemailer": "^6.9.3",
     "reflect-metadata": "^0.1.13",
     "socket.io": "^4.7.4",
     "ts-node": "^10.9.2",
-    "tsconfig-paths": "^4.2.0",
     "typeorm": "^0.3.17"
   },
   "ts-node": {
@@ -52,6 +53,9 @@
     "@types/nodemailer": "^6.4.8",
     "@types/socket.io": "^3.0.2",
     "eslint": "^8.0.0",
+    "nodemon": "^3.1.11",
+    "rimraf": "^6.1.2",
+    "tsconfig-paths": "^4.2.0",
     "tsx": "^3.12.7",
     "typescript": "^5.0.0"
   },
